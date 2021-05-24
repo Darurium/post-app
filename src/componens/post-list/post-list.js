@@ -12,6 +12,7 @@ const PostList = ({posts, onDelete}) => {
                 label={item.label} 
                 important={item.important}
                 onDelete={() => onDelete(item.id)}/>
+                
             </li>
         )
     })
