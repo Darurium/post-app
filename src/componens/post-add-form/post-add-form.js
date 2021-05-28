@@ -6,14 +6,24 @@ export default class PostAddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            text: ""
         }
         this.onValueChange = this.onValueChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onValueChange(e) {
+        this.setState({
+            text: e.target.value
+        })
+    }
+
+    onSubmit(e) {
         e.preventDefault();
-        console.log(e.target.value);
+        this.props.onAdd(this.state.text)
+        this.setState({
+            text: ""
+        })
     }
 
 
@@ -21,12 +31,15 @@ export default class PostAddForm extends Component {
 
 
         return (
-            <form className="bottom-panel d-flex">
+            <form 
+                className="bottom-panel d-flex"
+                onSubmit={this.onSubmit}>
                 <input
                     type="text"
                     placeholder="О чем вы сейчас думаете?"
                     className="form-control new-post-label"
                     onChange={this.onValueChange}
+                    value={this.state.text}
                 />
                 <button
                     type="submit"
